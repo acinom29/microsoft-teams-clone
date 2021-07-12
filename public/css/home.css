@@ -1,0 +1,51 @@
+/* #464EB8, #7B83EB and #505AC9. */
+body {
+    background-color: #E1E5EA;
+}
+
+.container {
+    margin: 50px auto;
+    width: 60%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main-image {
+    width: 50%;
+    height: 50%;
+    margin-top: 8%;
+}
+
+img {
+    height: 400px;
+    width: 100%;
+    border-radius: 50%;
+}
+
+#button-div {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#button {
+    border: 2px solid #464EB8;
+    margin-bottom: 10px;
+    background-color: #464EB8;
+    padding: 6px 40px;
+}
+
+#button:hover {
+    font-weight: 10px;
+    padding: 6px 45px;
+    transition: .5s;
+}
+
+#tag {
+    font-weight: 400;
+    margin-top: 20px;
+    font-size: 28px;
+}
