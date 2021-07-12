@@ -10,18 +10,22 @@ app.use(express.static(path.join(__dirname,'public')));
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'/views'))
 
+//getting login page
 app.get('/', (req, res) => {
     res.render('login');
 });
 
+//getting home page
 app.get('/home', (req, res) => {
     res.render('home');
 });
-    
+   
+//getting index page
 app.get('/index', function(req, res) {
     res.render('index');
 });
 
+//chat connection
 io.sockets.on('connection', function(socket) {
     socket.on('username', function(username) {
         socket.username = username;
@@ -38,6 +42,7 @@ io.sockets.on('connection', function(socket) {
 
 });
 
+//listening to server
 const server = http.listen(PORT, function () {
         console.log(`ON PORT: ${PORT}`);
     });
