@@ -34,16 +34,18 @@
             border-radius: 20px;
         }
     </style>
-
-    <!-- title -->
     <title>Microsoft teams</title>
 
 </head>
 
+
 <body>
-    <!-- search bar -->
     <div id="bar">
         <input type="text" id="search-bar" placeholder="Search">
+        <div id="mode-btns">
+            <button id="dark" title="dark mode">dark mode</button>
+            <button id="light" title="light mode">light mode</button>
+        </div>
     </div>
 
     <div id="box">
@@ -135,10 +137,10 @@
           ">generate room id</button>
                 </div>
                 <div id="button-box">
-                    <button type="button" class="btn btn-primary" onclick="createRoom()"
+                    <button id="meet-btn" type="button" class="btn btn-primary" onclick="createRoom()"
                         title="Click to create meeting">Create
                         meeting </button>
-                    <button type="button" class="btn btn-outline-primary" onclick="joinRoom()"
+                    <button id="meet-btn2" type="button" class="btn btn-outline-primary" onclick="joinRoom()"
                         title="Click to join meeting">Join
                         meeting</button>
                 </div>
@@ -191,8 +193,6 @@
         </div>
     </div>
 
-
-    <!-- emoji picker -->
     <script>
         $(document).ready(function () {
             $("#txt").emojioneArea({
@@ -206,7 +206,7 @@
 
 
     <script>
-        var socket = io.connect('https://microsoftteamsapp.herokuapp.com/');
+        var socket = io.connect('http://localhost:3000/');
         // submit text message without reload/refresh the page
         $('form').submit(function (e) {
             e.preventDefault(); // prevents page reloading
@@ -229,6 +229,9 @@
         var username = prompt('Please tell me your name');
         socket.emit('username', username);
 
+
+
+
         //generate random id
         const generateId = document.querySelector('#generate-id');
         generateId.addEventListener('click', () => {
@@ -250,6 +253,28 @@
             return result;
         }
 
+        const lightbtn = document.querySelector('#light');
+        const darkbtn = document.querySelector('#dark');
+        lightbtn.addEventListener('click', () => {
+            document.getElementById('video-chatside').style.backgroundColor = '#E7D9EA';
+            document.getElementById('chatside').style.backgroundColor = 'pink';
+            document.querySelector('#generate-id').className = 'btn btn-primary';
+            document.querySelector('#meet-btn').className = 'btn btn-primary';
+            document.querySelector('#meet-btn2').className = 'btn btn-outline-primary';
+            document.querySelector('#input-id').style.backgroundColor = '#505ac954';
+            document.querySelector('#send').style.backgroundColor = 'pink';
+
+        });
+
+        darkbtn.addEventListener('click', () => {
+            document.getElementById('video-chatside').style.backgroundColor = '#7d8491';
+            document.getElementById('chatside').style.backgroundColor = '#c0c5c1';
+            document.querySelector('#generate-id').className = 'btn btn-light';
+            document.querySelector('#meet-btn').className = 'btn btn-light';
+            document.querySelector('#meet-btn2').className = 'btn btn-outline-light';
+            document.querySelector('#input-id').style.backgroundColor = '#133c55';
+            document.querySelector('#send').style.backgroundColor = '#c0c5c1';
+        })
         //in development features
         const idText = document.querySelector('#meet-id');
         const cambtn = document.querySelector('#camera-btn');
